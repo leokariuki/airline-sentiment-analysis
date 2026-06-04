@@ -60,8 +60,8 @@ Raw tweets → cleaning & preprocessing (tokenization, stemming, stop-word remov
 
 ## 🚀 Quickstart
 ```bash
-git clone https://github.com/leokariuki/AIRLINE-SENTIMENT-ANALYSIS.git
-cd AIRLINE-SENTIMENT-ANALYSIS
+git clone https://github.com/leokariuki/airline-sentiment-analysis.git
+cd airline-sentiment-analysis
 pip install -r requirements.txt   # add this file: pandas, scikit-learn, nltk, matplotlib
 jupyter lab "group_5 notebook.ipynb"
 ```
