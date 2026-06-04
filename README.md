@@ -1,57 +1,75 @@
-# AIRLINE-SENTIMENT-ANALYSIS
-# BUSINESS OVERVIEW
+# 💬 Airline Sentiment Analysis
 
-### INTRODUCTION
+> An NLP pipeline that classifies US-airline tweets as positive, negative, or neutral —
+> turning unstructured social-media chatter into actionable customer-experience insight.
 
-The airline industry is highly competitive, and customer satisfaction plays a crucial role in determining the success and reputation of airlines. In today's digital age, social media platforms have become a significant avenue for customers to express their opinions and experiences with airlines. This project aims to develop a comprehensive solution for monitoring, analyzing, and understanding customer sentiment expressed on Twitter regarding various airlines. The project focuses on leveraging natural language processing (NLP) and machine learning techniques to classify tweets into positive, negative, or neutral sentiment categories. By analyzing sentiment, airlines can gain actionable insights to enhance customer satisfaction, identify operational improvements, and effectively manage their brand reputation on Twitter.
+![status](https://img.shields.io/badge/status-complete-success)
+![python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![nlp](https://img.shields.io/badge/NLP-NLTK-green)
+![model](https://img.shields.io/badge/best%20model-Random%20Forest%2086.5%25-blue)
 
-### METHODOLOGY
+## 📌 Business Problem
+Airlines compete heavily on customer satisfaction, and much of that sentiment now lives
+on social media. Manually reading thousands of tweets is impossible. This project builds
+an automatic sentiment classifier so airlines can monitor brand perception at scale,
+spot recurring pain points, and respond before issues escalate.
 
-The project will follow a structured methodology encompassing the following steps:
+## 🎯 Objectives
+1. Classify airline-related tweets into **positive / negative / neutral** sentiment.
+2. Surface the operational themes driving negative sentiment.
+3. Translate results into recommendations for customer-experience and brand management.
 
-* Data Collection: The data was sourced from [here](https://data.world/socialmediadata/twitter-us-airline-sentiment). It was scraped from February 2015 and contains tweet reviews of different US airline companies.
-* Data Preprocessing: Clean and preprocess the tweet data by removing noise, irrelevant information, and performing tasks such as tokenization, stemming, and removing stopwords.
-* Sentiment Classification Model: Train a machine learning model (such as a supervised classifier or deep learning model) using the preprocessed dataset to classify tweets into positive, negative, or neutral sentiments. Evaluate the model's performance using appropriate evaluation metrics.
-* Real-time Monitoring System: Implement a system that retrieves live tweets related to airlines and applies the sentiment classification model to categorize them in real time. Handle high volume and velocity of incoming tweets efficiently and ensure scalability.
-* Insights and Recommendations: Analyze sentiment analysis results to generate actionable insights and recommendations for improving customer satisfaction, addressing pain points, and managing brand reputation effectively.
-* Response and Engagement Strategy: Develop a strategy for airlines to respond to negative sentiment and engage with customers in a timely and personalized manner. Implement systems and processes to manage customer feedback, complaints, and turnaround negative experiences into positive ones.
+## 🗂️ Data
+[Twitter US Airline Sentiment](https://data.world/socialmediadata/twitter-us-airline-sentiment)
+— tweets scraped from February 2015 covering several US carriers.
 
-### PROBLEM STATEMENT
+## 🏗️ Workflow
+```
+Raw tweets → cleaning & preprocessing (tokenization, stemming, stop-word removal)
+          → TF-IDF vectorization → model training & comparison → evaluation
+```
 
-The airline industry is currently facing a notable decrease in customer satisfaction, leading to unfavorable brand perception and diminished customer loyalty. This decline in satisfaction can be attributed to several factors, including flight delays, inadequate customer service, mishandling of luggage, and other operational inefficiencies. As a result, addressing these customer concerns and enhancing the overall brand perception has become a crucial focus for airlines.
+## ✨ Methods
+- Text preprocessing with **NLTK** (tokenization, stemming, stop-word removal)
+- **TF-IDF** feature extraction
+- Trained and compared multiple classifiers; selected the best by accuracy
 
-### OBJECTIVES
+## 📊 Results
+| Metric | Value |
+|---|---|
+| **Best model** | Random Forest (untuned) |
+| **Accuracy** | **86.5%** |
+| Improvement over baseline | ~13 percentage points |
 
-1. Determine the overall sentiment expressed in tweets related to US airlines. This involves classifying tweets as positive, negative, or neutral to understand the general sentiment of customers towards different airlines.
-2. Implement a real-time monitoring system to continuously capture and process tweets related to airlines from Twitter.
-3. Generate actionable insights and recommendations based on sentiment analysis to improve customer satisfaction, address pain points, and enhance overall brand reputation.
-4. Establish an effective response and engagement strategy to manage negative sentiment, address customer complaints, and foster positive customer experiences.
+**Key insights**
+- Most negative sentiment clusters around **cancelled, delayed, and missed flights**.
+- Sentiment is a meaningful signal for customer churn risk in this dataset.
+- Class imbalance means the model can lean toward the majority class — a known limitation.
 
-## DATA UNDERSTANDING
+> 📊 *Add a confusion matrix and a top-terms-per-sentiment chart here to make results visual.*
 
-The data was sourced from [here](https://data.world/socialmediadata/twitter-us-airline-sentiment). It was scraped from February 2015 and contains tweet reviews of different US airline companies.
+## 💡 Recommendations
+- Airlines with high negative-sentiment volume should prioritise the recurring themes
+  above (punctuality, baggage handling, customer service).
+- Use the classifier for **continuous social-media monitoring** and faster response.
+- Personalised outreach and clearer disruption communication can reduce negative sentiment.
 
-## FINAL MODEL
+## ⚠️ Limitations
+- Misclassifies roughly one in seven tweets.
+- Class imbalance may bias predictions toward the majority class.
 
-Our final and preferred model is the untuned random forest classifier which performed better compared to other models with an accuracy of 86.51 percent. This is a remarkable improvement from the baseline model by approximately 13%.
+## 🚀 Quickstart
+```bash
+git clone https://github.com/leokariuki/AIRLINE-SENTIMENT-ANALYSIS.git
+cd AIRLINE-SENTIMENT-ANALYSIS
+pip install -r requirements.txt   # add this file: pandas, scikit-learn, nltk, matplotlib
+jupyter lab "group_5 notebook.ipynb"
+```
 
-## CONCLUSIONS
+## 🔮 Future Improvements
+- Add a transformer baseline (DistilBERT / Hugging Face) and compare to TF-IDF + RF.
+- Address class imbalance (resampling / class weights).
+- Deploy as a Streamlit app or Hugging Face Space for live tweet scoring.
 
-- Sentiments expressed by customers play a significant role in their decision to continue or discontinue their relationship with an airline as we've seen through the prediction of churn rates in our dataset.
-- From the dataset, we are able to predict that 7% of the customers are likely to churn.
-- From our sentiment analysis in the tweets, we find that most customer pain points are about canceled, delayed and missed flights.
-- We settled on the final model, which is the Random Forest Model which had the highest accuracy score as compared to other models.
-- The model has proven to have an accuracy of 86% in classying whether a tweet is postive, negative or neutral and it can be used to continuosly monitor the sentiments coming from the social media platforms.
-
-## **MODEL LIMITATIONS**
-
-- The model incorrectly identifies one out of seven reviews.
-- We had a class imbalanced and so the model maybe biased towards the majority class.
-
-## **RECOMMENDATIONS**
-
-- Airlines with a higher count of negative sentiments should pay attention to the feedback provided by customers. Negative sentiments can indicate areas where improvements are needed, such as customer service, flight punctuality and baggage handling.
-- Airlines should Provide comprehensive training to airline staff, including customer-facing employees such as flight attendants, ground staff, and customer service representatives in order to ensure customers are proper handled to curb on the churning rates.
-- Following many complaints coming from the tweet sentiments revolving around cancaled, delayed and missed flights, the airlines should provide effective schedules and effeciency in operations on their flight depatures and incase of any challenge like bad weather, there should be proper communication to the customers in due time to avoid inconveniences.
-- Personalized Marketing and Offers could help mitigate negative reviews.
-- Identifying influential individuals or social media accounts within the customers through collaborative promotional campaigns.
+## 👤 Author
+**Leo Kariuki** — [LinkedIn](https://www.linkedin.com/in/leokariuki/) · [Portfolio](https://leokariuki.lovable.app)
